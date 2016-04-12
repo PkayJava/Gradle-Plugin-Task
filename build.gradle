@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'plugin-task'
+version = '1.0'
+
+ext {
+    jooqVersion = '3.7.3'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile gradleApi()
+    compile 'org.jooq:jooq-codegen:' + jooqVersion
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://pkayjava.ddns.net:8081/nexus/content/repositories/releases") {
+                authentication(userName: "admin", password: "admin123")
+            }
+            pom.groupId = 'com.angkorteam.gradle';
+            pom.artifactId = 'plugin-task'
+            pom.version = '1.0'
+            pom.packaging = 'jar'
+        }
+    }
+}
