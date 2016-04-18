@@ -8,14 +8,14 @@ import java.util.Date;
 /**
  * Created by socheat on 2/20/16.
  */
-public class DateConverter extends AbstractConverter<java.sql.Date, Date> {
+public class DateTimeConverter extends AbstractConverter<Timestamp, Date> {
 
-    public DateConverter() {
-        super(java.sql.Date.class, Date.class);
+    public DateTimeConverter() {
+        super(Timestamp.class, Date.class);
     }
 
     @Override
-    public Date from(java.sql.Date databaseObject) {
+    public Date from(Timestamp databaseObject) {
         if (databaseObject != null) {
             return databaseObject;
         }
@@ -23,9 +23,9 @@ public class DateConverter extends AbstractConverter<java.sql.Date, Date> {
     }
 
     @Override
-    public java.sql.Date to(Date userObject) {
+    public Timestamp to(Date userObject) {
         if (userObject != null) {
-            return new java.sql.Date(userObject.getTime());
+            return new Timestamp(userObject.getTime());
         }
         return null;
     }

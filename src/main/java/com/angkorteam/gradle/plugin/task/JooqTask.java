@@ -1,6 +1,6 @@
 package com.angkorteam.gradle.plugin.task;
 
-import com.angkorteam.jooq.DateConverter;
+import com.angkorteam.jooq.DateTimeConverter;
 import com.angkorteam.jooq.DefaultGeneratorStrategy;
 import com.angkorteam.jooq.JavaGenerator;
 import org.gradle.api.tasks.TaskAction;
@@ -46,13 +46,13 @@ public class JooqTask extends Task {
         database.setInputSchema(this.database);
 
         CustomType customType = new CustomType();
-        customType.setName(DateConverter.class.getSimpleName());
+        customType.setName(DateTimeConverter.class.getSimpleName());
         customType.setType(Date.class.getName());
-        customType.setConverter(DateConverter.class.getName());
+        customType.setConverter(DateTimeConverter.class.getName());
         database.setCustomTypes(Arrays.asList(customType));
 
         ForcedType forcedType = new ForcedType();
-        forcedType.setName(DateConverter.class.getSimpleName());
+        forcedType.setName(DateTimeConverter.class.getSimpleName());
         forcedType.setExpression(".*");
         forcedType.setTypes("^(datetime)|(timestamp)|(time)|(date)$");
         database.setForcedTypes(Arrays.asList(forcedType));

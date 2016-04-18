@@ -2,20 +2,19 @@ package com.angkorteam.jooq;
 
 import org.jooq.impl.AbstractConverter;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
  * Created by socheat on 2/20/16.
  */
-public class DateConverter extends AbstractConverter<java.sql.Date, Date> {
+public class TimeConverter extends AbstractConverter<java.sql.Time, Date> {
 
-    public DateConverter() {
-        super(java.sql.Date.class, Date.class);
+    public TimeConverter() {
+        super(java.sql.Time.class, Date.class);
     }
 
     @Override
-    public Date from(java.sql.Date databaseObject) {
+    public Date from(java.sql.Time databaseObject) {
         if (databaseObject != null) {
             return databaseObject;
         }
@@ -23,9 +22,9 @@ public class DateConverter extends AbstractConverter<java.sql.Date, Date> {
     }
 
     @Override
-    public java.sql.Date to(Date userObject) {
+    public java.sql.Time to(Date userObject) {
         if (userObject != null) {
-            return new java.sql.Date(userObject.getTime());
+            return new java.sql.Time(userObject.getTime());
         }
         return null;
     }
