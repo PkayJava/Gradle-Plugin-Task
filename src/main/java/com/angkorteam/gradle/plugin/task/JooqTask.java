@@ -1,8 +1,6 @@
 package com.angkorteam.gradle.plugin.task;
 
-import com.angkorteam.jooq.DateTimeConverter;
-import com.angkorteam.jooq.DefaultGeneratorStrategy;
-import com.angkorteam.jooq.JavaGenerator;
+import com.angkorteam.jooq.*;
 import org.gradle.api.tasks.TaskAction;
 import org.jooq.util.GenerationTool;
 import org.jooq.util.jaxb.*;
@@ -45,17 +43,39 @@ public class JooqTask extends Task {
         database.setIncludes(".*");
         database.setInputSchema(this.database);
 
-        CustomType customType = new CustomType();
-        customType.setName(DateTimeConverter.class.getSimpleName());
-        customType.setType(Date.class.getName());
-        customType.setConverter(DateTimeConverter.class.getName());
-        database.setCustomTypes(Arrays.asList(customType));
+        CustomType customTypeTime = new CustomType();
+        customTypeTime.setName(TimeConverter.class.getSimpleName());
+        customTypeTime.setType(Date.class.getName());
+        customTypeTime.setConverter(TimeConverter.class.getName());
 
-        ForcedType forcedType = new ForcedType();
-        forcedType.setName(DateTimeConverter.class.getSimpleName());
-        forcedType.setExpression(".*");
-        forcedType.setTypes("^(datetime)|(timestamp)|(time)|(date)$");
-        database.setForcedTypes(Arrays.asList(forcedType));
+        CustomType customTypeDate = new CustomType();
+        customTypeDate.setName(DateConverter.class.getSimpleName());
+        customTypeDate.setType(Date.class.getName());
+        customTypeDate.setConverter(DateConverter.class.getName());
+
+        CustomType customTypeDateTime = new CustomType();
+        customTypeDateTime.setName(DateTimeConverter.class.getSimpleName());
+        customTypeDateTime.setType(Date.class.getName());
+        customTypeDateTime.setConverter(DateTimeConverter.class.getName());
+
+        database.setCustomTypes(Arrays.asList(customTypeTime, customTypeDate, customTypeDateTime));
+
+        ForcedType forcedTypeTime = new ForcedType();
+        forcedTypeTime.setName(TimeConverter.class.getSimpleName());
+        forcedTypeTime.setExpression(".*");
+        forcedTypeTime.setTypes("^(time)$");
+
+        ForcedType forcedTypeDate = new ForcedType();
+        forcedTypeDate.setName(DateConverter.class.getSimpleName());
+        forcedTypeDate.setExpression(".*");
+        forcedTypeDate.setTypes("^date$");
+
+        ForcedType forcedTypeDateTime = new ForcedType();
+        forcedTypeDateTime.setName(DateTimeConverter.class.getSimpleName());
+        forcedTypeDateTime.setExpression(".*");
+        forcedTypeDateTime.setTypes("^(datetime)|(timestamp)$");
+
+        database.setForcedTypes(Arrays.asList(forcedTypeTime, forcedTypeDate, forcedTypeDateTime));
 
         generator.setDatabase(database);
 
