@@ -9,7 +9,7 @@ ext {
 }
 
 repositories {
-    maven { url "http://pkayjava.ddns.net:8081/repository/maven-central/" }
+    maven { url "http://pkayjava.ddns.net:8081/repository/maven-public/" }
     mavenCentral()
 }
 
