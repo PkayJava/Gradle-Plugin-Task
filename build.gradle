@@ -9,6 +9,7 @@ ext {
 }
 
 repositories {
+    maven { url "http://pkayjava.ddns.net:8081/repository/maven-public/" }
     mavenCentral()
 }
 
@@ -20,7 +21,7 @@ dependencies {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "http://pkayjava.ddns.net:8081/nexus/content/repositories/releases") {
+            repository(url: "http://pkayjava.ddns.net:8081/repository/maven-releases/") {
                 authentication(userName: "admin", password: "admin123")
             }
             pom.groupId = 'com.angkorteam.gradle';
