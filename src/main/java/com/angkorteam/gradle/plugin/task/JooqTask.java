@@ -58,12 +58,17 @@ public class JooqTask extends Task {
         customTypeDateTime.setType(Date.class.getName());
         customTypeDateTime.setConverter(DateTimeConverter.class.getName());
 
-        database.setCustomTypes(Arrays.asList(customTypeTime, customTypeDate, customTypeDateTime));
+        CustomType customTypeDouble = new CustomType();
+        customTypeDouble.setName(DoubleConverter.class.getSimpleName());
+        customTypeDouble.setType(Double.class.getName());
+        customTypeDouble.setConverter(DoubleConverter.class.getName());
+
+        database.setCustomTypes(Arrays.asList(customTypeTime, customTypeDate, customTypeDateTime, customTypeDouble));
 
         ForcedType forcedTypeTime = new ForcedType();
         forcedTypeTime.setName(TimeConverter.class.getSimpleName());
         forcedTypeTime.setExpression(".*");
-        forcedTypeTime.setTypes("^(time)$");
+        forcedTypeTime.setTypes("^time$");
 
         ForcedType forcedTypeDate = new ForcedType();
         forcedTypeDate.setName(DateConverter.class.getSimpleName());
@@ -75,7 +80,12 @@ public class JooqTask extends Task {
         forcedTypeDateTime.setExpression(".*");
         forcedTypeDateTime.setTypes("^(datetime)|(timestamp)$");
 
-        database.setForcedTypes(Arrays.asList(forcedTypeTime, forcedTypeDate, forcedTypeDateTime));
+        ForcedType forcedTypeDouble = new ForcedType();
+        forcedTypeDouble.setName(DoubleConverter.class.getSimpleName());
+        forcedTypeDouble.setExpression(".*");
+        forcedTypeDouble.setTypes("^decimal$");
+
+        database.setForcedTypes(Arrays.asList(forcedTypeTime, forcedTypeDate, forcedTypeDateTime, forcedTypeDouble));
 
         generator.setDatabase(database);
 
