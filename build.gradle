@@ -5,7 +5,7 @@ group = 'plugin-task'
 version = '1.0'
 
 ext {
-    jooqVersion = '3.7.3'
+    jooqVersion = '3.8.0'
 }
 
 repositories {
