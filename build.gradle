@@ -1,5 +1,9 @@
-apply plugin: 'java'
-apply plugin: 'maven'
+plugins {
+    id 'java'
+    id 'idea'
+    id 'maven'
+    id 'net.researchgate.release' version '2.4.1'
+}
 
 group = 'plugin-task'
 version = '1.0'
@@ -9,14 +13,29 @@ ext {
 }
 
 repositories {
-    maven { url "http://pkayjava.ddns.net:8081/repository/maven-public/" }
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile gradleApi()
     compile 'org.jooq:jooq-codegen:' + jooqVersion
 }
+
+release {
+    tagTemplate = '$name-$version'
+}
+
+task(startmessage) << {
+    println 'starting build'
+}
+
+task(printversion) << {
+    println project.version
+}
+
+beforeReleaseBuild.dependsOn startmessage
+afterReleaseBuild.dependsOn printversion
+
 
 uploadArchives {
     repositories {
