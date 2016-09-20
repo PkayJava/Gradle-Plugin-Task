@@ -36,26 +36,7 @@ task(startmessage) << {
 
 task(printversion) << {
     println project.version
-    bintray {
-        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-        publications = ['MyPublication']
-        pkg {
-            repo = 'maven'
-            name = 'Plugin-Task'
-            userOrg = ''
-            licenses = ['Apache-2.0']
-            vcsUrl = 'https://github.com/PkayJava/Plugin-Task.git'
-            labels = ['Socheat KHAUV', 'PkayJava']
-            publicDownloadNumbers = true
-            version {
-                name = project.property('version')
-                desc = 'Gradle-Plugin-Task'
-                vcsTag = project.property('version')
-                attributes = ['gradle-plugin': 'ccom.angkorteam.gradle:plugin-task']
-            }
-        }
-    }
+    bintrayUpload
 }
 
 beforeReleaseBuild.dependsOn startmessage
@@ -68,6 +49,27 @@ publishing {
             groupId 'com.angkorteam.gradle'
             artifactId 'plugintask'
             version project.version
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['MyPublication']
+    pkg {
+        repo = 'maven'
+        name = 'Plugin-Task'
+        userOrg = ''
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/PkayJava/Plugin-Task.git'
+        labels = ['Socheat KHAUV', 'PkayJava']
+        publicDownloadNumbers = true
+        version {
+            name = project.property('version')
+            desc = 'Gradle-Plugin-Task'
+            vcsTag = project.property('version')
+            attributes = ['gradle-plugin': 'ccom.angkorteam.gradle:plugin-task']
         }
     }
 }
