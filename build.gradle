@@ -31,11 +31,13 @@ release {
 }
 
 task(startmessage) << {
-    println 'starting build' + project.version
+    println 'starting build'
 }
 
 task(printversion) << {
     println project.version
+    jar
+    bintrayUpload
 }
 
 publishing {
