@@ -36,8 +36,6 @@ task(startmessage) << {
 
 task(printversion) << {
     println project.version
-    jar
-    bintrayUpload
 }
 
 publishing {
@@ -73,4 +71,4 @@ bintray {
 }
 
 beforeReleaseBuild.dependsOn startmessage
-afterReleaseBuild.dependsOn printversion
+afterReleaseBuild.dependsOn printversion, jar, bintrayUpload
