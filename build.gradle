@@ -45,9 +45,9 @@ publishing {
     publications {
         MyPublication(MavenPublication) {
             from components.java
-            groupId project.property('group')
-            artifactId project.property('artifact')
-            version project.property('version')
+            groupId 'com.angkorteam.gradle'
+            artifactId 'plugintask'
+            version project.version
         }
     }
 }
