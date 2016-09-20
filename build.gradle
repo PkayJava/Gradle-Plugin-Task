@@ -62,9 +62,9 @@ bintray {
         labels = ['Socheat KHAUV', 'PkayJava']
         publicDownloadNumbers = true
         version {
-            name = project.property('version')
+            name = project.version
             desc = 'Gradle-Plugin-Task'
-            vcsTag = project.property('version')
+            vcsTag = project.version
             attributes = ['gradle-plugin': 'com.angkorteam.gradle:plugintask']
         }
     }
