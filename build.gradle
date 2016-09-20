@@ -5,9 +5,6 @@ plugins {
     id 'net.researchgate.release' version '2.4.1'
 }
 
-group = 'plugin-task'
-version = '1.0'
-
 ext {
     jooqVersion = '3.8.4'
 }
