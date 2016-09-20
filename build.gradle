@@ -65,7 +65,7 @@ bintray {
             name = project.property('version')
             desc = 'Gradle-Plugin-Task'
             vcsTag = project.property('version')
-            attributes = ['gradle-plugin': 'ccom.angkorteam.gradle:plugin-task']
+            attributes = ['gradle-plugin': 'com.angkorteam.gradle:plugin-task']
         }
     }
 }
