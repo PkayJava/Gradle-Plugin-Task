@@ -14,7 +14,7 @@ plugins {
 }
 
 ext {
-    jooqVersion = '3.8.4'
+    jooqVersion = '3.8.6'
 }
 
 repositories {
